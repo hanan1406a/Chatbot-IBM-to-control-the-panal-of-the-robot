@@ -1,0 +1,432 @@
+{
+  "intents": [
+    {
+      "intent": "arm",
+      "examples": [
+        {
+          "text": "arm"
+        },
+        {
+          "text": "arm move"
+        },
+        {
+          "text": "move arm"
+        },
+        {
+          "text": "تحريك الذراع"
+        },
+        {
+          "text": "ذراع"
+        }
+      ],
+      "description": "arm"
+    },
+    {
+      "intent": "Hello",
+      "examples": [
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "سلام"
+        },
+        {
+          "text": "مرحبا"
+        },
+        {
+          "text": "هلا"
+        },
+        {
+          "text": "هيلو"
+        }
+      ],
+      "description": "Hello"
+    },
+    {
+      "intent": "movement",
+      "examples": [
+        {
+          "text": "backward"
+        },
+        {
+          "text": "left"
+        },
+        {
+          "text": "move"
+        },
+        {
+          "text": "movement"
+        },
+        {
+          "text": "right"
+        },
+        {
+          "text": "stop"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "arm",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "a1",
+          "synonyms": [
+            "arm1"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "a2",
+          "synonyms": [
+            "arm 2"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "a3",
+          "synonyms": [
+            "arm 3"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "a4",
+          "synonyms": [
+            "arm 4"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "a5",
+          "synonyms": [
+            "arm 5"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "a6",
+          "synonyms": [
+            "arm 6"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "movement",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "backwards",
+          "synonyms": [
+            "behind",
+            "تراجع",
+            "خلف"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "forward",
+          "synonyms": [
+            "امام",
+            "تقدم الى الامام"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "left",
+          "synonyms": [
+            "يسار"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "right",
+          "synonyms": [
+            "جنب",
+            "يمين"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "stop",
+          "synonyms": [
+            "وقف"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-percentage",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_4_1624993676750",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "which arm"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_9_1624993999428",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1624993999435",
+      "previous_sibling": "handler_8_1624993999435"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "how many steps and what direction"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_4_1624991627262",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1624991627272",
+      "previous_sibling": "handler_5_1624991627272"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "what is the percentage"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_7_1624994127714",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1624994127715",
+      "previous_sibling": "handler_6_1624994127715"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1624991627262",
+      "context": {
+        "number_": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_5_1624991627272"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1624994127714",
+      "context": {
+        "percentage": "@sys-percentage"
+      },
+      "conditions": "@sys-percentage",
+      "event_name": "input",
+      "dialog_node": "handler_6_1624994127715"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1624993999428",
+      "context": {
+        "armMove": "#arm"
+      },
+      "conditions": "#arm",
+      "event_name": "input",
+      "dialog_node": "handler_8_1624993999435"
+    },
+    {
+      "type": "frame",
+      "title": "#movement",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Done"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#movement",
+      "dialog_node": "node_3_1624990830852",
+      "previous_sibling": "node_9_1624989599775"
+    },
+    {
+      "type": "frame",
+      "title": "#arm",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "don"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#arm",
+      "dialog_node": "node_4_1624993676750",
+      "previous_sibling": "node_3_1624990830852"
+    },
+    {
+      "type": "standard",
+      "title": "Hello",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello. How can I help you?"
+              },
+              {
+                "text": "Hello, I am at your service, what do you want?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Hello",
+      "dialog_node": "node_9_1624989599775",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "slot",
+      "parent": "node_3_1624990830852",
+      "variable": "$number_",
+      "dialog_node": "slot_4_1624991627262"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1624993676750",
+      "variable": "$percentage",
+      "dialog_node": "slot_7_1624994127714",
+      "previous_sibling": "slot_9_1624993999428"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1624993676750",
+      "variable": "$armMove",
+      "dialog_node": "slot_9_1624993999428"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Welcome to the chatbot"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Talk",
+  "language": "en",
+  "description": ""
+}
